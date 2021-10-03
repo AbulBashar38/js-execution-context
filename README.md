@@ -12,7 +12,15 @@ js Execution হয় দুই ভাবে প্রথমে global execution c
 golbal execution context এ দুইটি phase থাকে। একটি loading/creating state আর অন্যটি executing state. Loading/creating execution phase এ একটি global object থাকে একটি this object থাকে একটি variable object ও একটি scope chain থাকে।
  ![executionWay](./image/global-e-c-loding.png)
  এই global loading phase এ প্রথমে সব variable গুলোকে variable object এর মধ্যে undefined হিসাবে রাখা হয়। আর function এর body গুলা রাখা হয়।
-![executionWay](./image/global-e-c-Execuition.png)
+![executionWay](./image/global-e-c-Execution.png)
  তারপর execution phase এ variable গুলোর value assign করে দেয় এবং function যদি থাকে তাহলে সেই function যদি call হয় তবে function execution context শুরু হয়।
  ![executionWay](./image/function-e-c.png)
- function execution এ ও একই দুইটি phase থাকে। loading/creation state and exectioun state. function এর loading state এ global
+ function execution এ ও একই দুইটি phase থাকে। loading/creation state and exectioun state. function এর loading state এ global objec এর বদলে arguments নামের একটা object থাকে। এইখানে সব arguments and peramitar গুলা থাকে। আর বাকি সব global execution এর মতই same হয়।
+  ![executionWay](./image/function-e-c-loding.png) 
+  function যখন execute হয় তখন variable গুলার মান assigne হয় এবং কোনো অপারেশন থাকলে তা ও হয়।
+   ![executionWay](./image/large-e-c.png)
+   এখন আমরা একটা বড় কোড দেখবো যে এইটা কিভাবে execute হচ্ছে। শুরুতেই একটা global execution context তৈরি হয়। এবং এইটা execution stuck এর সবচেয়ে নিচে জমা হয়। তারপর যখন loading phase এ থাকে তখন variable a টা undefined set হয়। এবং function এর body হিসাবে one function টা ও set হয়।
+    ![executionWay](./image/large-e-c-one.png)
+    যখন execution phase এ যায় তখন দেখে যে one() function টা call হচ্ছে। তখন সে one function এর execution শুরু হয় এবং function execution context stuck এ জমা হয়। এইভাবে একটা একটা করে execution হতে থাকে আর stuck এ জমা হয়। যখন ই কোনো function কিছু return করে তখন execution বন্ধো হয়ে জায়।
+    ![executionWay](./image/large-e-c-two.png)
+        ![executionWay](./image/large-e-c-three.png)
